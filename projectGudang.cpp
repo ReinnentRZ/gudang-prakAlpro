@@ -2,31 +2,34 @@
 #include <string>
 using namespace std;
 
-//global variable
+// global variable
 char kembali;
 int menu, pilihKategori;
 
-//struct here
-struct kategori {
+// struct here
+struct kategori
+{
     string namaKategori;
     int idKategori;
     barang structBarang[100000];
 };
 
-struct barang {
+// barang struct
+struct barang
+{
     string nama;
     int jumlah;
     int id;
 };
 
-//array here
+// array here
 kategori arrayKategori[1000];
 
 int jumlahKeseluruhanBarang = 0;
 int jumlahBarang = 0;
 int jumlahKategori = 0;
 
-//function here
+// function here
 
 void menuGudang();
 void tambahBarang();
@@ -39,72 +42,96 @@ void riwayat();
 void menuKategori();
 void kosong();
 
-int main() {
+int main()
+{
 
-    do{
+    do
+    {
 
-    menuGudang();
+        menuGudang();
 
-    switch(menu) {
-        
-        case 1  : tambahBarang();    break;
-        case 2  : tambahKategori();  break;
-        case 3  : cariBarang();      break;
-        case 4  : updateBarang();    break;
-        case 5  : tampilBarang();    break;
-        case 6  : hapusBarang();     break;
-        case 7  : riwayat();         break;       
+        switch (menu)
+        {
 
-        default : system("cls");
+        case 1:
+            tambahBarang();
+            break;
+        case 2:
+            tambahKategori();
+            break;
+        case 3:
+            cariBarang();
+            break;
+        case 4:
+            updateBarang();
+            break;
+        case 5:
+            tampilBarang();
+            break;
+        case 6:
+            hapusBarang();
+            break;
+        case 7:
+            riwayat();
+            break;
+
+        default:
+            system("cls");
             cout << "==================\n";
             cout << "| Menu tidak ada |\n";
             cout << "==================\n";
-        break;    
+            break;
         }
 
-        cout << "\nApakah anda ingin kembali ke menu? (y/t) "; cin >> kembali;  
+        cout << "\nApakah anda ingin kembali ke menu? (y/t) ";
+        cin >> kembali;
 
-        }while (kembali == 'y' || kembali == 'Y');
-
+    } while (kembali == 'y' || kembali == 'Y');
 }
 
-void menuGudang() {
-    
+void menuGudang()
+{
+
     system("cls");
     cout << "============================\n";
     cout << "|           MENU           |\n";
     cout << "============================\n";
     cout << "| 1. Tambah Barang         |\n";
-    cout << "| 2. Tambah Kategori       |\n";    
+    cout << "| 2. Tambah Kategori       |\n";
     cout << "| 3. Cari Barang           |\n";
     cout << "| 4. Perbarui Data Barang* |\n";
     cout << "| 5. Tampilkan Data Barang |\n";
     cout << "| 6. Hapus Data Barang     |\n";
     cout << "| 7. Riwayat Aktifitas*    |\n";
-    cout << "============================\n";    
+    cout << "============================\n";
     cout << "| 0. Keluar                |\n";
-    cout << "============================\n";  
+    cout << "============================\n";
     cout << "* = coming soon\n";
-    cout << "Pilih menu : "; cin >> menu;      
-    
+    cout << "Pilih menu : ";
+    cin >> menu;
 }
 
-void menuKategori() {
+void menuKategori()
+{
     kategori kt;
     cout << "          KATEGORI          \n";
     cout << "============================\n";
-    for (int i = 0; i < jumlahKategori; i++) {
+    for (int i = 0; i < jumlahKategori; i++)
+    {
         cout << "\nNo." << i + 1 << " " << kt.namaKategori;
     }
-    cout << "----------------------------\n"; 
+    cout << "----------------------------\n";
 }
 
-void tambahBarang() {
-    menuKategori();  
+void tambahBarang()
+{
+    menuKategori();
     cout << "\nPilih kategori : ";
     cin >> pilihKategori;
-    for(int i=0; i<jumlahKategori; i++) {
-        if(pilihKategori == i+1){
+    for (int i = 0; i < jumlahKategori; i++)
+    {
+        if (pilihKategori == i + 1)
+        {
             cout << "Tambah Barang Kategori " << arrayKategori[i].namaKategori << endl;
             cout << "===========================================\n";
             cout << "Nama Barang : ";
@@ -114,7 +141,8 @@ void tambahBarang() {
 
             break;
         }
-        else{
+        else
+        {
             system("cls");
             cout << "==================\n";
             cout << "| Menu tidak ada |\n";
@@ -123,22 +151,24 @@ void tambahBarang() {
     }
 }
 
-void tambahKategori() {
-    
+void tambahKategori()
+{
+
     cout << "=================================\n";
     cout << "|        TAMBAH KATEGORI        |\n"; // Reinnent belum mandi
     cout << "=================================\n";
     cout << "Nama : ";
     getline(cin, arrayKategori[jumlahKategori].namaKategori);
     jumlahKategori += 1;
-    arrayKategori[jumlahKategori-1].idKategori = jumlahKategori;
+    arrayKategori[jumlahKategori - 1].idKategori = jumlahKategori;
     cout << "\n=================================\n";
     cout << "\nKategori berhasil ditambahkan!\n";
-
 }
 
-void tampilBarang() {  
-    if (jumlahKategori == 0) {
+void tampilBarang()
+{
+    if (jumlahKategori == 0)
+    {
         cout << "Tidak ada barang.\n";
     }
     cout << "TAMPILKAN DATA BERDASARKAN :\n";
@@ -148,23 +178,24 @@ void tampilBarang() {
     cout << "3. Usia\n";
     cout << "----------------------------\n";
     cout << "0. Kembali\n";
-    cout << "----------------------------\n"; 
-    cout << "Pilih menu : "; cin >> menu;
+    cout << "----------------------------\n";
+    cout << "Pilih menu : ";
+    cin >> menu;
 
-    if (menu==1){
+    if (menu == 1)
+    {
         cout << "\nData Barang\n";
-
     }
 
-;
-;
-    
+    ;
+    ;
 }
-void cariBarang(){
-    
+void cariBarang()
+{
 }
 
-void kosong(){
+void kosong()
+{
     cout << "-----------------------------\n";
     cout << "        Gudang kosong.       \n";
     cout << "-----------------------------\n";
