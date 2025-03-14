@@ -90,13 +90,13 @@ void menuGudang() {
 }
 
 void menuKategori() {
-    
     kategori kt;
-
+    cout << "          KATEGORI          \n";
+    cout << "============================\n";
     for (int i = 0; i < jumlahKategori; i++) {
         cout << "\nNo." << i + 1 << " " << kt.namaKategori;
-
     }
+    cout << "----------------------------\n"; 
 }
 
 void tambahBarang() {
@@ -108,9 +108,9 @@ void tambahBarang() {
             cout << "Tambah Barang Kategori " << arrayKategori[i].namaKategori << endl;
             cout << "===========================================\n";
             cout << "Nama Barang : ";
-            getline(cin, structBarang[jumlahBarang].nama);
+            getline(cin, arrayKategori[i].structBarang[jumlahBarang].nama);
             cout << "Jumlah      : ";
-            cin >> structBarang[jumlahBarang].jumlah;
+            cin >> arrayKategori[i].structBarang[jumlahBarang].jumlah;
 
             break;
         }
@@ -131,42 +131,14 @@ void tambahKategori() {
     cout << "Nama : ";
     getline(cin, arrayKategori[jumlahKategori].namaKategori);
     jumlahKategori += 1;
-    idKategori.[jumlahKategori-1] = jumlahKategori;
+    arrayKategori[jumlahKategori-1].idKategori = jumlahKategori;
     cout << "\n=================================\n";
     cout << "\nKategori berhasil ditambahkan!\n";
 
 }
 
-void listBarang() {
-    
-    if (jumlahBarang == 0) {
-        kosong();
-    } else {
-
-        cout << "\nPilih Kategori Terlebih Dahulu\n";
-        menuKategori();
-        cout << "\nMasukkan Kategori : ";
-        cin >> pilihKategori;
-        for (int i = 0; ) {}
-        }
-}
-
-void listBarang() {
-    
-    if (jumlahBarang == 0) {
-        kosong();
-    } else {
-
-        cout << "\nPilih Kategori Terlebih Dahulu\n";
-        menuKategori();
-
-    }
-
-
-}
-
 void tampilBarang() {  
-    if (jumlahBarang == 0) {
+    if (jumlahKategori == 0) {
         cout << "Tidak ada barang.\n";
     }
     cout << "TAMPILKAN DATA BERDASARKAN :\n";
@@ -179,7 +151,7 @@ void tampilBarang() {
     cout << "----------------------------\n"; 
     cout << "Pilih menu : "; cin >> menu;
 
-    if (pilihan==1){
+    if (menu==1){
         cout << "\nData Barang\n";
 
     }
