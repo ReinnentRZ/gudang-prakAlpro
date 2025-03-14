@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 //global variable
@@ -9,7 +10,7 @@ int menu, pilihKategori;
 struct kategori {
     string namaKategori;
     int idKategori;
-
+    barang structBarang[100000];
 };
 
 struct barang {
@@ -19,12 +20,11 @@ struct barang {
 };
 
 //array here
-barang stockBarang[100000];
 kategori arrayKategori[1000];
 
 int jumlahKeseluruhanBarang = 0;
 int jumlahBarang = 0;
-int jumlahKategori = 0;   
+int jumlahKategori = 0;
 
 //function here
 
@@ -37,6 +37,7 @@ void tampilBarang();
 void hapusBarang();
 void riwayat();
 void menuKategori();
+void kosong();
 
 int main() {
 
@@ -76,13 +77,14 @@ void menuGudang() {
     cout << "| 1. Tambah Barang         |\n";
     cout << "| 2. Tambah Kategori       |\n";    
     cout << "| 3. Cari Barang           |\n";
-    cout << "| 4. Perbarui Data Barang  |\n";
+    cout << "| 4. Perbarui Data Barang* |\n";
     cout << "| 5. Tampilkan Data Barang |\n";
     cout << "| 6. Hapus Data Barang     |\n";
-    cout << "| 7. Riwayat Aktifitas     |\n";
+    cout << "| 7. Riwayat Aktifitas*    |\n";
     cout << "============================\n";    
     cout << "| 0. Keluar                |\n";
     cout << "============================\n";  
+    cout << "* = coming soon\n";
     cout << "Pilih menu : "; cin >> menu;      
     
 }
@@ -95,7 +97,6 @@ void menuKategori() {
         cout << "\nNo." << i + 1 << " " << kt.namaKategori;
 
     }
-    
 }
 
 void tambahBarang() {
@@ -107,9 +108,9 @@ void tambahBarang() {
             cout << "Tambah Barang Kategori " << arrayKategori[i].namaKategori << endl;
             cout << "===========================================\n";
             cout << "Nama Barang : ";
-            getline(cin, stockBarang[jumlahBarang].nama);
+            getline(cin, structBarang[jumlahBarang].nama);
             cout << "Jumlah      : ";
-            cin >> stockBarang[jumlahBarang].jumlah;
+            cin >> structBarang[jumlahBarang].jumlah;
 
             break;
         }
@@ -120,8 +121,6 @@ void tambahBarang() {
             cout << "==================\n";
         }
     }
-
-    
 }
 
 void tambahKategori() {
@@ -141,9 +140,7 @@ void tambahKategori() {
 void listBarang() {
     
     if (jumlahBarang == 0) {
-
-        cout << "Gudang Kosong";
-        
+        kosong();
     } else {
 
         cout << "\nPilih Kategori Terlebih Dahulu\n";
@@ -157,9 +154,7 @@ void listBarang() {
 void listBarang() {
     
     if (jumlahBarang == 0) {
-
-        cout << "Gudang Kosong";
-        
+        kosong();
     } else {
 
         cout << "\nPilih Kategori Terlebih Dahulu\n";
@@ -173,20 +168,16 @@ void listBarang() {
 void tampilBarang() {  
     if (jumlahBarang == 0) {
         cout << "Tidak ada barang.\n";
-        return;
-        //menampilkan menu sorting 
     }
-    int pilihan,urutan;
-    cout << "1. tampilkan semua data\n";
-    cout << "tampilkan berdasarkan:"
-    cout << "2. id\n";
-    cout << "3. nama\n";
-    cout << "4. jumlah\n";
-    cin >> pilihan;
-    cout << "urutan:\n";
-    cout << "1. AESC ";
-    cout << "2. DESC";
-    cin >> urutan;
+    cout << "TAMPILKAN DATA BERDASARKAN :\n";
+    cout << "============================\n";
+    cout << "1. Id\n";
+    cout << "2. Nama\n";
+    cout << "3. Usia\n";
+    cout << "----------------------------\n";
+    cout << "0. Kembali\n";
+    cout << "----------------------------\n"; 
+    cout << "Pilih menu : "; cin >> menu;
 
     if (pilihan==1){
         cout << "\nData Barang\n";
@@ -201,4 +192,8 @@ void cariBarang(){
     
 }
 
-nnnnn
+void kosong(){
+    cout << "-----------------------------\n";
+    cout << "        Gudang kosong.       \n";
+    cout << "-----------------------------\n";
+}
