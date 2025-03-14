@@ -7,17 +7,18 @@ char kembali;
 int menu, pilihKategori;
 
 //struct here
-struct kategori {
-    string namaKategori;
-    int idKategori;
-    barang structBarang[100000];
-};
-
 struct barang {
     string nama;
     int jumlah;
     int id;
 };
+
+struct kategori {
+    string namaKategori;
+    int idKategori;
+    barang structBarang[10000];
+};
+
 
 //array here
 kategori arrayKategori[1000];
@@ -32,12 +33,13 @@ void menuGudang();
 void tambahBarang();
 void tambahKategori();
 void cariBarang();
-void updateBarang();
+//void updateBarang();
 void tampilBarang();
-void hapusBarang();
-void riwayat();
+//void hapusBarang();
+//void riwayat();
 void menuKategori();
 void kosong();
+void menuAscDsc();
 
 int main() {
 
@@ -50,10 +52,10 @@ int main() {
         case 1  : tambahBarang();    break;
         case 2  : tambahKategori();  break;
         case 3  : cariBarang();      break;
-        case 4  : updateBarang();    break;
+        case 4  : //updateBarang();    break;
         case 5  : tampilBarang();    break;
-        case 6  : hapusBarang();     break;
-        case 7  : riwayat();         break;       
+        case 6  : //hapusBarang();     break;
+        case 7  : //riwayat();         break;       
 
         default : system("cls");
             cout << "==================\n";
@@ -90,11 +92,10 @@ void menuGudang() {
 }
 
 void menuKategori() {
-    kategori kt;
     cout << "          KATEGORI          \n";
     cout << "============================\n";
     for (int i = 0; i < jumlahKategori; i++) {
-        cout << "\nNo." << i + 1 << " " << kt.namaKategori;
+        cout << i + 1 << ". " << arrayKategori[i].namaKategori << endl;
     }
     cout << "----------------------------\n"; 
 }
@@ -124,12 +125,12 @@ void tambahBarang() {
 }
 
 void tambahKategori() {
-    
+    system("cls");
     cout << "=================================\n";
     cout << "|        TAMBAH KATEGORI        |\n"; // Reinnent belum mandi
     cout << "=================================\n";
     cout << "Nama : ";
-    getline(cin, arrayKategori[jumlahKategori].namaKategori);
+    cin >> arrayKategori[jumlahKategori].namaKategori;
     jumlahKategori += 1;
     arrayKategori[jumlahKategori-1].idKategori = jumlahKategori;
     cout << "\n=================================\n";
@@ -139,26 +140,32 @@ void tambahKategori() {
 
 void tampilBarang() {  
     if (jumlahKategori == 0) {
-        cout << "Tidak ada barang.\n";
+        kosong();
     }
-    cout << "TAMPILKAN DATA BERDASARKAN :\n";
+    cout << "     MENU TAMPILKAN DATA     \n";
     cout << "============================\n";
-    cout << "1. Id\n";
-    cout << "2. Nama\n";
-    cout << "3. Usia\n";
-    cout << "----------------------------\n";
-    cout << "0. Kembali\n";
+    cout << "1. Tampilkan semua\n";
+    cout << "2. Tampilkan per kategori\n";
     cout << "----------------------------\n"; 
     cout << "Pilih menu : "; cin >> menu;
 
-    if (menu==1){
-        cout << "\nData Barang\n";
+    switch(menu){
+        case 1 :
+        system("cls");
+        tampilkanSemuaBarang();
+        break;
 
+        case 2 :
+        menuKategori();        
+        break;
+
+        default : system("cls");
+        cout << "==================\n";
+        cout << "| Menu tidak ada |\n";
+        cout << "==================\n";
+        break;
     }
 
-;
-;
-    
 }
 void cariBarang(){
     
@@ -168,4 +175,32 @@ void kosong(){
     cout << "-----------------------------\n";
     cout << "        Gudang kosong.       \n";
     cout << "-----------------------------\n";
+}
+
+void tampilkanSemuaBarang(){
+    menuAscDsc();
+    cout << "Pilih menu : "; cin >> menu;
+    switch(menu){
+        case 1 : //asc(); break;
+        case 2 : //desc(); break;
+
+        default : system("cls");
+        cout << "==================\n";
+        cout << "| Menu tidak ada |\n";
+        cout << "==================\n";
+        break;
+    }
+}
+
+void menuAscDesc(){
+    cout << "       URUTKAN DARI :       \n";
+    cout << "============================\n";
+    cout << "1. ID Terkecil\n";
+    cout << "2. ID Terbesar\n";
+    cout << "----------------------------\n"; 
+}
+
+//pengurutan menggunakan bubble
+void asc(){
+
 }
